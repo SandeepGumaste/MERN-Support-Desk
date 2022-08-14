@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 import { useSelector, useDispatch } from "react-redux";
-import { register } from "../features/auth/authSlice";
-
+import { useNavigate } from "react-router-dom";
+import { register, reset } from "../features/auth/authSlice";
+import Spinner from "../components/Spinner";
 const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -17,10 +18,22 @@ const Register = () => {
   const { name, email, password, password2 } = formData;
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const { user, isLoading, isSuccess, message } = useSelector(
+  const { user, isError, isLoading, isSuccess, message } = useSelector(
     (state) => state.auth
   );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+    if (isSuccess || user) {
+      navigate("/");
+    }
+
+    dispatch(reset());
+  }, [dispatch, isError, isSuccess, message, navigate, user]);
 
   const onChange = (e) => {
     setFormData((prev) => ({
@@ -44,11 +57,15 @@ const Register = () => {
     }
   };
 
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <>
       <section className="heading">
         <h1>
-          <FaUser /> Register {user}
+          <FaUser /> Register
         </h1>
         <p>Please create an account</p>
       </section>
