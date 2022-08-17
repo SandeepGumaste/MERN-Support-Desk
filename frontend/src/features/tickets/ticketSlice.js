@@ -36,7 +36,7 @@ export const getTickets = createAsyncThunk(
   }
 );
 
-// Get user ticket
+// Get single ticket
 export const getTicket = createAsyncThunk(
   "tickets/get",
   async (ticketId, thunkAPI) => {
@@ -68,8 +68,6 @@ export const ticketSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getTickets.pending, (state) => {
-        // NOTE: clear single ticket on tickets page, this replaces need for
-        // loading state on individual ticket
         state.ticket = null;
       })
       .addCase(getTickets.fulfilled, (state, action) => {

@@ -21,11 +21,12 @@ function NewTicket() {
     dispatch(createTicket({ product, description }))
       .unwrap()
       .then(() => {
-        // We got a good response so navigate the user
         navigate("/tickets");
         toast.success("New ticket created!");
       })
-      .catch(toast.error);
+      .catch((error) => {
+        toast.error("Ticket cration failed");
+      });
   };
 
   return (
