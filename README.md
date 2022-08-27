@@ -1,9 +1,6 @@
-
 # Support Desk
 
-
 Simple Support Desk app
-
 
 ## Tech Stack
 
@@ -12,6 +9,7 @@ Simple Support Desk app
 **Server:** Node, Express
 
 **Database:** MongoDB
+
 ## Run Locally
 
 Clone the project
@@ -32,7 +30,8 @@ Install dependencies
   npm install
 ```
 
-Create a .env file with the following keys
+Create a .env file with the following keys in the root folder
+
 ```bash
   NODE_ENV="development"
   PORT = 5000
@@ -46,11 +45,10 @@ Start the server
   npm run dev
 ```
 
-
 ## Screenshots
 
 ### Landing page
- 
+
 ![App Screenshot](https://i.ibb.co/gwN8scT/Screenshot-from-2022-08-27-12-31-28.png)
 
 ### Sign up page
@@ -72,7 +70,3 @@ Start the server
 ### Single Ticket page
 
 ![App Screenshot](https://i.ibb.co/2sJyJk4/Screenshot-from-2022-08-27-17-02-32.png)
-
-
-
-
